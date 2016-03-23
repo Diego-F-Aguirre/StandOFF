@@ -71,6 +71,8 @@ class Timer: NSObject {
         if timerIsOn {
             timer?.invalidate()
             timer = nil
+            seconds = 0
+            totalSeconds = 0
         }
     }
     

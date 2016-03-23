@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Dash Board Controller-->
+        <!--Dash Board View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="DashBoardController" customModule="StandOFF" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DashBoardViewController" customModule="StandOFF" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -69,15 +69,32 @@
                                     <constraint firstAttribute="bottomMargin" secondItem="jLz-8f-JSq" secondAttribute="bottom" constant="6" id="uxs-Ne-le0"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total standup time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJl-pr-Vgp">
+                                <rect key="frame" x="227" y="308" width="147" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total standup time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aT6-Ao-k2z">
+                                <rect key="frame" x="227" y="337" width="147" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="aT6-Ao-k2z" firstAttribute="top" secondItem="eJl-pr-Vgp" secondAttribute="bottom" constant="8" id="5Y0-jl-4RZ"/>
+                            <constraint firstItem="eJl-pr-Vgp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DIR-S3-4rQ"/>
+                            <constraint firstItem="aT6-Ao-k2z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TYo-ka-1wc"/>
                             <constraint firstItem="hwX-mx-yZR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aEw-kS-Lry"/>
                             <constraint firstItem="hwX-mx-yZR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="eNZ-9n-ZH3"/>
+                            <constraint firstItem="eJl-pr-Vgp" firstAttribute="top" secondItem="hwX-mx-yZR" secondAttribute="bottom" constant="50" id="m7Z-Qs-RJx"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="timerLabel" destination="oNW-ra-UwN" id="oXJ-ZJ-6mb"/>
+                        <outlet property="totalStandupLabel" destination="aT6-Ao-k2z" id="l8k-Ch-m2T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
