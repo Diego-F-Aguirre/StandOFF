@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashBoardViewController: UIViewController {
+class DashBoardViewController: UIViewController, TimerDelegate {
     
     @IBOutlet weak var timerLabel: UILabel!
     
@@ -19,31 +19,33 @@ class DashBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DashBoardViewController.updateLabel), name: "secondTick", object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DashBoardViewController.updateLabel), name: "secondTick", object: nil)
     }
     
     
     @IBAction func StartButtonPressed(sender: AnyObject) {
+        timer.delegate = self
         timer.startTimer()
         timerLabel.text = timer.string
-        StandUpController.createStandUp { (standUp) in
-            StandUpController.standups.append(standUp)
-            self.standUp = standUp
-        }
+        self.standUp = UserController.createStandupForUser(UserController.currentUser)
     }
     
     @IBAction func StopButtonPressed(sender: AnyObject) {
         timer.stopTimer()
         timerLabel.text = ""
         if let standUp = standUp {
-            StandUpController.addStopToStandUp(standUp)
+            UserController.addStopToStandUpForUser(UserController.currentUser, standup: standUp)
             self.standUp = nil
-            totalStandupLabel.text = StandUpController.secondsAsString(StandUpController.totalStandingTimeForStandups(StandUpController.standups))
+            totalStandupLabel.text = StandUpController.secondsAsString(StandUpController.totalStandingTimeForStandups(UserController.currentUser.standups))
         }
     }
     
-    func updateLabel() {
-        timerLabel.text = timer.string
+//    func updateLabel() {
+//        timerLabel.text = timer.string
+//    }
+    
+    func updateLabel(label: String) {
+        timerLabel.text = label
     }
     
 }

@@ -8,23 +8,23 @@
 
 import Foundation
 
-class User: Equatable {
+class User: Equatable, FirebaseType {
     
     private let kUsername = "username"
     private let kStandUp = "standup"
     
     let username: String
-    let identifier: String?
 //    var challenges: [Challenge] = []
     var standups: [StandUp]
 //    let challengesIDs: [String]
+
+    var identifier: String?
     var endpoint: String {
         return "users"
     }
-    
     var jsonValue: [String: AnyObject] {
         
-        return [kUsername: username, kStandUp: standups]
+        return [kUsername: username, kStandUp: standups.map {$0.jsonValue}]
     }
     
     init (username: String, standup: [StandUp]) {
@@ -34,7 +34,7 @@ class User: Equatable {
         
     }
     
-    init?(json:[String: AnyObject], identifier: String) {
+    required init?(json: [String : AnyObject], identifier: String) {
         
         guard let username = json[kUsername] as? String,
             let standup = json[kStandUp] as? [StandUp] else { return nil }
@@ -43,6 +43,8 @@ class User: Equatable {
         self.standups = standup
         self.identifier = identifier
     }
+    
+
     
 }
 

@@ -26,9 +26,17 @@ class StandUp {
     var endpoint: String {
         return "standingTimes"
     }
+    var age: NSTimeInterval {
+        return NSDate().timeIntervalSinceDate(startTime)
+    }
     
     var jsonValue: [String: AnyObject] {
-        return [kStartTime: startTime, kStopTime: stopTime!]
+        
+        var json: [String: AnyObject] = [kStartTime: startTime.timeIntervalSince1970]
+        if let stopTime = stopTime {
+            json[kStopTime] = stopTime.timeIntervalSince1970
+        }
+        return json
     }
     
     init(startTime: NSDate, stopTime: NSDate?){

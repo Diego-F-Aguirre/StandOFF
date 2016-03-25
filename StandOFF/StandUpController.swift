@@ -9,11 +9,10 @@
 import Foundation
 
 class StandUpController {
-    static var standups: [StandUp] = []
     
-    static func createStandUp(completion:(standUp: StandUp)->Void) {
+    static func createStandUp()->StandUp {
         let standUp = StandUp(startTime: NSDate(), stopTime: nil)
-        completion(standUp: standUp)
+        return standUp
     }
     
     static func addStopToStandUp(standUp: StandUp) {
@@ -58,4 +57,44 @@ class StandUpController {
         
         return hoursString + minutesString + secondsString
     }
+    
+    static func filterStandUps(standups: [StandUp]) -> [StandUp]{
+        let weekAsSeconds = 7 * 24 * 60 * 60
+        let newArray = standups.filter { (standup) -> Bool in
+            return standup.age < Double(weekAsSeconds)
+        }
+        return newArray
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

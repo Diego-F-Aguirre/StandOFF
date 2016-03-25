@@ -13,6 +13,7 @@ class Timer: NSObject {
     var seconds = NSTimeInterval(0)
     var totalSeconds = NSTimeInterval(0)
     private var timer: NSTimer?
+    var delegate: TimerDelegate?
     var timerIsOn: Bool {
         get {
             if timer != nil {
@@ -78,6 +79,13 @@ class Timer: NSObject {
     
     func updateTimer() {
         seconds += 1
-        NSNotificationCenter.defaultCenter().postNotificationName("secondTick", object: self)
+        //NSNotificationCenter.defaultCenter().postNotificationName("secondTick", object: self)
+        delegate?.updateLabel(StandUpController.secondsAsString(self.seconds))
     }
+    
+    
+}
+
+protocol TimerDelegate {
+    func updateLabel(label: String)
 }
